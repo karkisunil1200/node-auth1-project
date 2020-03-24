@@ -6,6 +6,7 @@ module.exports = {
     connection: {
       filename: './data/auth.db3'
     },
+    
     migrations: {
       directory: './data/migrations'
     },

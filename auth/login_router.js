@@ -10,14 +10,14 @@ router.post('/', (req, res) => {
 
   User.findBy({username})
     .first()
-    .then(([user]) => {
+    .then(user => {
+      console.log('coming from login: ', req.session);
       if (user && bcrypt.compareSync(password, user.password)) {
-        //makes it remember the client
         req.session.user = {
           id: user.id,
           username: user.username
         };
-        res.status(200).json({hello: user.username});
+        res.status(200).json({hello: `Welcome ${user.username}`});
       } else {
         res.status(401).json({message: 'invalid login'});
       }
